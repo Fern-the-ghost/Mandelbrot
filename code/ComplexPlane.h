@@ -6,6 +6,11 @@
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
 
+const unsigned int MAX_ITER = 64;
+const float BASE_WIDTH = 4.0;
+const float BASE_HEIGHT = 4.0;
+const float BASE_ZOOM = 0.5;
+
 class ComplexPlane :: public Drawable
 {
     public:
@@ -19,6 +24,9 @@ class ComplexPlane :: public Drawable
         void updateRender();
 
     private:
+        int countIterations(Vector2f);
+        void iterationsToRGB(size_t, Unit8&, Unit8&, Unit8&);
+        Vector2f mapPixelToCoords(Vector2i);
         VertexArray m_vArray;
         State m_state;
         Vector2f m_mouseLocation;
