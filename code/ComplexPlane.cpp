@@ -5,57 +5,57 @@
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
 
-ComplexPlane(int pixelWidth, int pixelHeight)
+ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 {
 
 }
 
-void draw(RenderTarget& target, RenderStates states) const
+void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
 {
 
 }
 
-void zoomIn()
+void ComplexPlane::zoomIn()
 {
 
 }
 
-void zoomOut()
+void ComplexPlane::zoomOut()
 {
 
 }
 
-void setCenter(vector2i mousePixel)
+void ComplexPlane::setCenter(vector2i mousePixel)
 {
 
 }
 
-void setMouseLocation(Vector2i mousePixel)
+void ComplexPlane::setMouseLocation(Vector2i mousePixel)
 {
 
 }
 
-void loadText(Text& text)
+void ComplexPlane::oadText(Text& text)
 {
 
 }
 
-void updateRender()
+void ComplexPlane::updateRender()
 {
 
 }
 
-int countIterations(Vector2f coord)
+int ComplexPlane::countIterations(Vector2f coord)
 {
 
 }
 
-void iterationsToRGB(size_t count, Unit8& r, Unit8& g, Unit8& b)
+void ComplexPlane::iterationsToRGB(size_t count, Unit8& r, Unit8& g, Unit8& b)
 {
 
 }
 
-Vector2f mapPixelToCoords(Vector2i mousePixel)
+Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
 {
 
 }
