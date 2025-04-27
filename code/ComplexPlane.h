@@ -5,6 +5,7 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
+//Partnered with Anna :3
 
 const unsigned int MAX_ITER = 64;
 const float BASE_WIDTH = 4.0;
