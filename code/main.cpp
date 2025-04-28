@@ -8,10 +8,70 @@
 
 int main()
 {
-    VideoMode::getDesktopMode().width / 2.0;
-    VideoMode::getDesktopMode().height/ 2.0;
+    unsigned int screenWidth = VideoMode::getDesktopMode().width / 2.0;
+    unsigned int screenHeight = VideoMode::getDesktopMode().height / 2.0;
 
-    RenderWindow::
+    class ComplexPlane : public Drawable { //inheritance
+    public:
+        VertexArray Points;
+    private:
+        //put smt here
+    };
+    VertexArray vertices(Points);
 
+    RenderWindow window(VideoMode(width, height), "Complex plane!"); //RenderWindows is required to have string
+    ComplexPlane plane(screenWidth, screenHeight));
+
+    Font newFont;
+    newFont.loadFromFile("/home/ubuntu/Desktop/cisp400/fonts/Roboto/static/Roboto-Black.ttf"); //put a new font
+
+    Text newText("MANDELBROT", newFont, 50);
+    newText.setFillColor(Color::White);
+    newText.setStyle(Text::Bold);
+
+    Event event;
+    while (window.pollEvent(event))
+    {
+        if (event.type == Event::Closed)
+        {
+            window.close(); 
+        }
+        if (event.type == Event::MouseButtonPressed)
+        {
+            if (event.mouseButton.button == Mouse::Left)
+            {
+                //Left click will zoomIn and call setCenter on the ComplexPlane object
+                // with the(x, y) pixel location of the mouse click
+                cout << "the left button was pressed" << endl;
+                cout << "mouse x: " << event.mouseButton.x << endl;
+                cout << "mouse y: " << event.mouseButton.y << endl;
+
+                plane.zoomIn(); 
+                plane.setCenter(event.mouseButton.x, event.mouseButton.y);
+            }
+            else if (event.mouseButton.button == Mouse::Right) {
+            //Right click will zoomOut and call setCenter on the ComplexPlane 
+            //object with the (x,y) pixel location of the mouse click
+                cout << "the right button was pressed" << endl;
+                cout << "mouse x: " << event.mouseButton.x << endl;
+                cout << "mouse y: " << event.mouseButton.y << endl;
+
+                plane.zoomOut();
+                plane.setCenter(event.mouseButton.x, event.mouseButton.y);
+
+            }
+            
+        }
+        else if (event.type == Event::MouseMoved) { 
+            //Call setMouseLocation on the ComplexPlane object to store the (x,y) pixel location of the mouse click
+            //This will be used later to display the mouse coordinates as it moves
+            plane.setMouseLocation(event.mouseMoved.x, event.mouseMoved.y);
+        }
+        if (Keyboard::isKeyPressed(Keyboard::Escape))
+        {
+            window.close();
+        }
+    }
+    
     return 0;
 }
