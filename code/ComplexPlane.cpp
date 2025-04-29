@@ -104,6 +104,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Unit8& r, Unit8& g, Unit8& b)
 
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
 {
+    //would we need to use a double for loop?
     //to find a value of n in [a,b] into [c,d]
     //use ((n-a)/ (b-a)) * (d-c) + c
     //(d-c) either equals m_plane_size.x or m_plane_size.y
