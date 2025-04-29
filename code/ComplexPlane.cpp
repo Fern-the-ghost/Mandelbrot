@@ -17,6 +17,8 @@ ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
     m_zoomCount = 0;
     m_State = State::CALCULATING;
     //Initialize VertexArray with Points and pixelWidth with pixelHeight
+    //VertexArray m_vArray(Points(pixelWidth * pixelHeight));
+    //don't know if this would work on the Vertex Array part
 }
 
 void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
