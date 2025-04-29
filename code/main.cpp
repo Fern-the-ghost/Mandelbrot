@@ -11,19 +11,19 @@ int main()
     unsigned int screenWidth = VideoMode::getDesktopMode().width / 2.0;
     unsigned int screenHeight = VideoMode::getDesktopMode().height / 2.0;
 
-    class ComplexPlane : public Drawable { //inheritance
+    /*class ComplexPlane : public Drawable { //inheritance
     public:
         VertexArray Points;
     private:
         //put smt here
-    };
+    };*/
     VertexArray vertices(Points);
 
     RenderWindow window(VideoMode(width, height), "Complex plane!"); //RenderWindows is required to have string
     ComplexPlane plane(screenWidth, screenHeight));
 
     Font newFont;
-    newFont.loadFromFile("/home/ubuntu/Desktop/cisp400/fonts/Roboto/static/Roboto-Black.ttf"); //put a new font
+    newFont.loadFromFile("./ZillaSlab-Bold.ttf"); //put a new font
 
     Text newText("Mandelbrot Set", newFont, 50);
     newText.setFillColor(Color::White);
@@ -82,6 +82,10 @@ int main()
         {
             window.close();
         }
+        window.clear();
+        window.draw(plane);
+        window.draw(Text);
+        window.display();
     }
     
     return 0;
