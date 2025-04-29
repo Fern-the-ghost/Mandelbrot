@@ -109,5 +109,5 @@ Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
     //use ((n-a)/ (b-a)) * (d-c) + c
     //(d-c) either equals m_plane_size.x or m_plane_size.y
     //to find +c use for x: (m_plane_center.x - m_plane_size.x / 2.0)
-    //to find +c for y: (m_plane_center.y - m_plane_size.y / 2.0)
+    //to find +c use for y: (m_plane_center.y - m_plane_size.y / 2.0)
 }
