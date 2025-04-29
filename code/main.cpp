@@ -88,7 +88,10 @@ int main()
 
         window.clear();
         window.draw(plane);
+        window.draw(newText);
         window.draw(Text);
+        window.draw(moreText);
+        window.draw(addText);
         window.display();
     }
     
