@@ -8,17 +8,22 @@
 
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 {
-
+    m_plane_center = {0,0};
+    m_plane_size = {BASE_WIDTH,BASE_HEIGHT * m_aspectRatio};
+    m_zoomCount = 0;
+    m_State = State::CALCULATING;
 }
 
 void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
 {
-
+    target.draw(m_vArray);
 }
 
 void ComplexPlane::zoomIn()
 {
+    View view(FloatRect({0.f, 0.f}, {1000.f, 600.f}));
 
+    window.setView(view);
 }
 
 void ComplexPlane::zoomOut()
