@@ -82,6 +82,10 @@ int main()
         {
             window.close();
         }
+
+        plane.updateRender();
+        plane.loadText();
+
         window.clear();
         window.draw(plane);
         window.draw(Text);
