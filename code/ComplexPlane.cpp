@@ -54,7 +54,10 @@ void ComplexPlane::setMouseLocation(Vector2i mousePixel)
 
 void ComplexPlane::loadText(Text& text)
 {
-    stringstream 
+    stringstream words;
+
+    
+
     //Center: (0,0) will need to use setCenter
     //Cursor: (cursor.x, cursor.y) most likely will need to use MouseLocation
 }

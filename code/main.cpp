@@ -86,15 +86,15 @@ int main()
 
         plane.updateRender();
         plane.loadText();
-
-        window.clear();
-        window.draw(plane);
-        window.draw(newText);
-        window.draw(Text);
-        window.draw(moreText);
-        window.draw(addText);
-        window.display();
     }
+
+    window.clear();
+    window.draw(plane);
+    window.draw(newText);
+    window.draw(Text);
+    window.draw(moreText);
+    window.draw(addText);
+    window.display();
     
     return 0;
 }
