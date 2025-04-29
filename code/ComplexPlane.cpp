@@ -15,7 +15,7 @@ ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
     m_plane_center = {0,0};
     m_plane_size = {BASE_WIDTH,BASE_HEIGHT * m_aspectRatio};
     m_zoomCount = 0;
-    m_State = State::CALCULATING;
+    m_state = STATE::CALCULATING;
     //Initialize VertexArray with Points and pixelWidth with pixelHeight
     //VertexArray m_vArray(Points(pixelWidth * pixelHeight));
     //don't know if this would work on the Vertex Array part
@@ -32,7 +32,7 @@ void ComplexPlane::zoomIn()
     unsigned long long int x = BASE_WIDTH * (pow(BASE_ZOOM,m_ZoomCount));
     unsigned long long int y = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_ZoomCount));
     m_plane_size = (x,y);
-    m_State = CALCULATING;
+    m_state = STATE::CALCULATING;
 }
 
 void ComplexPlane::zoomOut()
@@ -41,13 +41,13 @@ void ComplexPlane::zoomOut()
     unsigned long long int x = BASE_WIDTH * (pow(BASE_ZOOM,m_ZoomCount));
     unsigned long long int y = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_ZoomCount));
     m_plane_size = (x,y);
-    m_State = CALCULATING;
+    m_state = STATE::CALCULATING;
 }
 
 void ComplexPlane::setCenter(vector2i mousePixel)
 {
     m_plane_center = Vector2f(ComplexPlane::mapPixelToCoords);
-    m_State = CALCULATING;
+    m_state = STATE::CALCULATING;
 }
 
 void ComplexPlane::setMouseLocation(Vector2i mousePixel)
@@ -76,6 +76,9 @@ void ComplexPlane::loadText(Text& text)
 
 void ComplexPlane::updateRender()
 {
+    Uint8 = r,g,b;
+
+
     if (m_State == CALCULATING)
     {
         for(int i = 0; i < y; i++)
@@ -84,9 +87,15 @@ void ComplexPlane::updateRender()
             {
                 //set the position of the Vertex Array
                 m_vArray[j + i * pixelWidth].position = {(float)j,(float)i};
+                //use ComplexPlane::mapPixelToCoords to find the pixel coord on the screen
+                //use the countIterations to get the count variable
+                //use the local variables for r g b to store the current pixel
+                //Pass all 4 variables: count,r,g,b to iterationsToRGB
+                //use a variable named color to store the VertexArray that works with j,i
             }
         }
     }
+    m_state = STATE::CALCULATING;
 }
 
 int ComplexPlane::countIterations(Vector2f coord)
