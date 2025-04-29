@@ -24,12 +24,19 @@ void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
 void ComplexPlane::zoomIn()
 {
     m_zoomCount++;
-    unsigned long long int x = BASE_WIDTH * (BASE_ZOOM)
+    unsigned long long int x = BASE_WIDTH * (pow(BASE_ZOOM,m_ZoomCount));
+    unsigned long long int y = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_ZoomCount));
+    m_plane_size = (x,y);
+    m_State = CALCULATING;
 }
 
 void ComplexPlane::zoomOut()
 {
-
+    m_zoomCount--;
+    unsigned long long int x = BASE_WIDTH * (pow(BASE_ZOOM,m_ZoomCount));
+    unsigned long long int y = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_ZoomCount));
+    m_plane_size = (x,y);
+    m_State = CALCULATING;
 }
 
 void ComplexPlane::setCenter(vector2i mousePixel)
