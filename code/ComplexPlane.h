@@ -6,6 +6,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
 #include <sstream>
+#include <complex>
 //Partnered with Anna :3
 
 const unsigned int MAX_ITER = 64;

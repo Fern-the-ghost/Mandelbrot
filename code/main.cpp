@@ -5,6 +5,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
 #include <sstream>
+#include <complex>
 //Partnered With Anna :3
 
 int main()

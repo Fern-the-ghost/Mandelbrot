@@ -5,6 +5,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
 #include <sstream>
+#include <complex>
 //Partnered with Anna :3
 
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
@@ -56,7 +57,10 @@ void ComplexPlane::loadText(Text& text)
 {
     stringstream words;
 
-    
+    if(ComplexPlane::setCenter != (0,0))
+    {
+        words
+    }
 
     //Center: (0,0) will need to use setCenter
     //Cursor: (cursor.x, cursor.y) most likely will need to use MouseLocation
