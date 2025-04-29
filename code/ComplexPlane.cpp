@@ -4,6 +4,7 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
+#include <sstream>
 //Partnered with Anna :3
 
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
@@ -53,12 +54,9 @@ void ComplexPlane::setMouseLocation(Vector2i mousePixel)
 
 void ComplexPlane::loadText(Text& text)
 {
-    //use stringstream to output the string to say
-    //"Mandelbrot Set"
+    stringstream 
     //Center: (0,0) will need to use setCenter
     //Cursor: (cursor.x, cursor.y) most likely will need to use MouseLocation
-    //"Left-click to Zoom in"
-    //"Right-click to Zoom out"
 }
 
 void ComplexPlane::updateRender()

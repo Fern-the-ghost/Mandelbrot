@@ -4,6 +4,7 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
+#include <sstream>
 //Partnered With Anna :3
 
 int main()

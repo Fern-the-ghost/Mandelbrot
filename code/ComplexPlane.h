@@ -5,6 +5,7 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
+#include <sstream>
 //Partnered with Anna :3
 
 const unsigned int MAX_ITER = 64;
