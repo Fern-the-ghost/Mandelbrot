@@ -25,9 +25,20 @@ int main()
     Font newFont;
     newFont.loadFromFile("/home/ubuntu/Desktop/cisp400/fonts/Roboto/static/Roboto-Black.ttf"); //put a new font
 
-    Text newText("MANDELBROT", newFont, 50);
+    Text newText("Mandelbrot Set", newFont, 50);
     newText.setFillColor(Color::White);
     newText.setStyle(Text::Bold);
+    newText.setPosition(0,0);
+
+    Text moreText("Left-click to Zoom in", newFont,50);
+    moreText.setFillColor(Color::White);
+    moreText.setStyle(Text::Bold);
+    moreText.setPosition(0,3);  
+
+    Text addText("Right-click to Zoom out", newFont,50);
+    addText.setFillColor(Color::White);
+    addText.setStyle(Text::Bold);
+    addText.setPosition(0,4);
 
     Event event;
     while (window.pollEvent(event))
