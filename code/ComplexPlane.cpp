@@ -59,7 +59,13 @@ void ComplexPlane::loadText(Text& text)
 
     if(ComplexPlane::setCenter != (0,0))
     {
-        words
+        //update the enterc in text(?)
+    }
+
+    if(ComplexPlane::setMouseLocation != //original location(?))
+    {
+        //update the mouse location in text
+        //dont know if we would need to use a double for loop(?)
     }
 
     //Center: (0,0) will need to use setCenter
