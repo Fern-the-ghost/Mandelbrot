@@ -7,7 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <complex>
-//Partnered with Anna :3
+//Partnered with Anna :3 
 
 const unsigned int MAX_ITER = 64;
 const float BASE_WIDTH = 4.0;
