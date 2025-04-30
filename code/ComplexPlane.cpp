@@ -6,7 +6,7 @@
 #include <iostream>
 #include <sstream>
 #include <complex>
-//Partnered with Anna :3
+//Partnered with Anna :3 
 
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 {
