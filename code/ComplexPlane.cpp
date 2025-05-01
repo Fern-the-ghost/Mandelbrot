@@ -16,6 +16,7 @@ ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
     m_plane_size = {BASE_WIDTH,BASE_HEIGHT * m_aspectRatio};
     m_zoomCount = 0;
     m_state = STATE::CALCULATING;
+    m_mouseLocation = {0.f, 0.f};
     //Initialize VertexArray with Points and pixelWidth with pixelHeight
     m_vArray(Points(pixelWidth * pixelHeight));
 }
@@ -126,8 +127,8 @@ Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
 {
     Vector 2f coord;
 
-    float numX = m_plane_center.x - m_plane_size.x / 2.0;
-    float numY = m_plane_center.y - m_plane_size.y / 2.0;
+    float numX = m_plane_center.x - m_plane_size.x / 2.0f;
+    float numY = m_plane_center.y - m_plane_size.y / 2.0f;
 
     coord.x = ((mousePixel.x)/m_plane_size.x) * m_plane_size.x + numX;
     coord.y = ((mousePixel.y)/m_plane_size.y) * m_plane_size.y * numY;
