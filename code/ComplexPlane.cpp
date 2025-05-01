@@ -107,7 +107,7 @@ size_t ComplexPlane::countIterations(Vector2f coord)
     return iter;
 }
 
-void ComplexPlane::iterationsToRGB(size_t count, Unit8& r, Unit8& g, Unit8& b)
+void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
     if(count < 51)
     {
