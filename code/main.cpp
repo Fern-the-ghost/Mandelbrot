@@ -29,7 +29,7 @@ int main()
     newText.setStyle(Text::Bold);
 
     Event event;
-    while (window.windowisOpen())
+    while (window.isOpen())
     {
         while(window.pollEvent(event))
         {
