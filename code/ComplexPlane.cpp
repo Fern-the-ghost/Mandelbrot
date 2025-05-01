@@ -63,15 +63,18 @@ void ComplexPlane::loadText(Text& text)
 
     words << "Mandelbrot Set" << endl;
 
-    if()
+    //Will update the x and y coords for the center if button was clicked
+    if(event.mouseButton.button == Mouse::Right || event.mouseButton.button == Mouse::Left)
     {
         words << "Center: (" << x << "," << y << ")" << endl;
     }
 
-    if()
+    //Will update the cursor when the user moves the mouse in the window screen
+    if(event.type == Event::MouseMoved)
     {
         words << "Cursor: (" << x << "," << y << ")" << endl;
     }
+    
     words << "Left-click to Zoom in" << endl;
     words << "Right-click to Zoom out" << endl;
 }
