@@ -59,19 +59,21 @@ void ComplexPlane::loadText(Text& text)
 {
     stringstream words;
 
-    if(ComplexPlane::setCenter != (0,0))
+    words.str("");
+
+    words << "Mandelbrot Set" << endl;
+
+    if()
     {
-        words << "Cursor" << ComplexPlane::setCenter()
+        words << "Center: (" << x << "," << y << ")" << endl;
     }
 
-    if(ComplexPlane::setMouseLocation != //original location(?))
+    if()
     {
-        //update the mouse location in text
-        //dont know if we would need to use a double for loop(?)
+        words << "Cursor: (" << x << "," << y << ")" << endl;
     }
-
-    //Center: (0,0) will need to use setCenter
-    //Cursor: (cursor.x, cursor.y) most likely will need to use MouseLocation
+    words << "Left-click to Zoom in" << endl;
+    words << "Right-click to Zoom out" << endl;
 }
 
 void ComplexPlane::updateRender()
