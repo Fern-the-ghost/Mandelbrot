@@ -51,7 +51,8 @@ int main()
                 std::cout << "mouse y: " << event.mouseButton.y << std::endl;
 
                 plane.zoomIn(); 
-                plane.setCenter(event.mouseButton.x, event.mouseButton.y);
+                Vector 2i mousePos = Mouse::getPosition();
+                plane.setCenter(mousePos);
             }
             else if (event.mouseButton.button == Mouse::Right) {
             //Right click will zoomOut and call setCenter on the ComplexPlane 
@@ -61,7 +62,8 @@ int main()
                 std::cout << "mouse y: " << event.mouseButton.y << std::endl;
                 
                 plane.zoomOut();
-                plane.setCenter(event.mouseButton.x, event.mouseButton.y);
+                Vector 2i mousePs = Mouse::getPosition();
+                plane.setCenter(mousePs);
 
             }
             
@@ -69,7 +71,8 @@ int main()
         else if (event.type == Event::MouseMoved) { 
             //Call setMouseLocation on the ComplexPlane object to store the (x,y) pixel location of the mouse click
             //This will be used later to display the mouse coordinates as it moves
-            plane.setMouseLocation(event.mouseMoved.x, event.mouseMoved.y);
+            Vector 2i mouseMo = Mouse::getPosition();
+            plane.setCenter(mouseMo);
         }
         if (Keyboard::isKeyPressed(Keyboard::Escape))
         {
