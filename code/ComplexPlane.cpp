@@ -15,7 +15,7 @@ ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
     m_plane_center = {0,0};
     m_plane_size = {BASE_WIDTH,BASE_HEIGHT * m_aspectRatio};
     m_zoomCount = 0;
-    m_state = STATE::CALCULATING;
+    m_state = State::CALCULATING;
     m_mouseLocation = {0.f, 0.f};
     //Initialize VertexArray with Points and pixelWidth with pixelHeight
     m_vArray(Points(pixelWidth * pixelHeight));
@@ -32,7 +32,7 @@ void ComplexPlane::zoomIn()
     unsigned long long int x = BASE_WIDTH * (pow(BASE_ZOOM,m_ZoomCount));
     unsigned long long int y = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_ZoomCount));
     m_plane_size = (x,y);
-    m_state = STATE::CALCULATING;
+    m_state = State::CALCULATING;
 }
 
 void ComplexPlane::zoomOut()
@@ -41,13 +41,13 @@ void ComplexPlane::zoomOut()
     unsigned long long int x = BASE_WIDTH * (pow(BASE_ZOOM,m_ZoomCount));
     unsigned long long int y = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_ZoomCount));
     m_plane_size = (x,y);
-    m_state = STATE::CALCULATING;
+    m_state = State::CALCULATING;
 }
 
 void ComplexPlane::setCenter(vector2i mousePixel)
 {
     m_plane_center = Vector2f(ComplexPlane::mapPixelToCoords(mousePixel));
-    m_state = STATE::CALCULATING;
+    m_state = State::CALCULATING;
 }
 
 void ComplexPlane::setMouseLocation(Vector2i mousePixel)
@@ -89,7 +89,7 @@ void ComplexPlane::updateRender()
                 m_vArray[j + i * pixelWidth].color = { r,g,b };
             }
         }
-        m_state = STATE::DISPLAYING;
+        m_state = State::DISPLAYING;
     }
 }
 

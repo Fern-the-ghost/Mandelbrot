@@ -14,12 +14,6 @@ const float BASE_WIDTH = 4.0;
 const float BASE_HEIGHT = 4.0;
 const float BASE_ZOOM = 0.5;
 
-enum class State
-{
-    CALCULATING;
-    DISPLAYING;
-};
-
 class ComplexPlane :: public Drawable
 {
     public:
@@ -31,6 +25,12 @@ class ComplexPlane :: public Drawable
         void setMouseLocation(Vector2i);
         void loadText(Text&);
         void updateRender();
+
+        enum class State
+        {
+            CALCULATING;
+            DISPLAYING;
+        };
 
     private:
         size_t countIterations(Vector2f);
