@@ -22,8 +22,8 @@ int main()
     };*/
     VertexArray vertices(Points);
 
-    RenderWindow window(VideoMode(width, height), "Complex plane!"); //RenderWindows is required to have string
-    ComplexPlane plane(screenWidth, screenHeight));
+    RenderWindow window(VideoMode(screenWidth, screenHeight), "Complex plane!"); //RenderWindows is required to have string
+    ComplexPlane plane(screenWidth, screenHeight);
 
     Font newFont;
     newFont.loadFromFile("./ZillaSlab-Bold.ttf"); //put a new font
@@ -46,9 +46,9 @@ int main()
             {
                 //Left click will zoomIn and call setCenter on the ComplexPlane object
                 // with the(x, y) pixel location of the mouse click
-                cout << "the left button was pressed" << endl;
-                cout << "mouse x: " << event.mouseButton.x << endl;
-                cout << "mouse y: " << event.mouseButton.y << endl;
+                std::cout << "the left button was pressed" << std::endl;
+                std::cout << "mouse x: " << event.mouseButton.x << std::endl;
+                std::cout << "mouse y: " << event.mouseButton.y << std::endl;
 
                 plane.zoomIn(); 
                 plane.setCenter(event.mouseButton.x, event.mouseButton.y);
@@ -56,9 +56,9 @@ int main()
             else if (event.mouseButton.button == Mouse::Right) {
             //Right click will zoomOut and call setCenter on the ComplexPlane 
             //object with the (x,y) pixel location of the mouse click
-                cout << "the right button was pressed" << endl;
-                cout << "mouse x: " << event.mouseButton.x << endl;
-                cout << "mouse y: " << event.mouseButton.y << endl;
+                std::cout << "the right button was pressed" << std::endl;
+                std::cout << "mouse x: " << event.mouseButton.x << std::endl;
+                std::cout << "mouse y: " << event.mouseButton.y << std::endl;
                 
                 plane.zoomOut();
                 plane.setCenter(event.mouseButton.x, event.mouseButton.y);
