@@ -98,7 +98,7 @@ void ComplexPlane::updateRender()
     m_state = STATE::CALCULATING;
 }
 
-int ComplexPlane::countIterations(Vector2f coord)
+size_t ComplexPlane::countIterations(Vector2f coord)
 {
     //Count the number of iterations for coord
 }
