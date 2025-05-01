@@ -62,21 +62,14 @@ void ComplexPlane::loadText(Text& text)
     words.str("");
 
     words << "Mandelbrot Set" << endl;
-
-    //Will update the x and y coords for the center if button was clicked
-    if(event.mouseButton.button == Mouse::Right || event.mouseButton.button == Mouse::Left)
-    {
-        words << "Center: (" << x << "," << y << ")" << endl;
-    }
-
+    words << "Center: (" << m_plane_center.x << "," << m_plane_center.y << ")" << endl;
     //Will update the cursor when the user moves the mouse in the window screen
-    if(event.type == Event::MouseMoved)
-    {
-        words << "Cursor: (" << x << "," << y << ")" << endl;
-    }
+    words << "Cursor: (" << m_mouseLocation.x << "," << m_mouseLocation.y << ")" << endl;
     
     words << "Left-click to Zoom in" << endl;
     words << "Right-click to Zoom out" << endl;
+
+    text.setString(words.str());
 }
 
 void ComplexPlane::updateRender()
@@ -102,6 +95,7 @@ void ComplexPlane::updateRender()
 
 size_t ComplexPlane::countIterations(Vector2f coord)
 {
+    //Will count the iterations for coord
     size_t iter;
     for(int i = 0; i < coord.x; i++)
     {
@@ -115,12 +109,48 @@ size_t ComplexPlane::countIterations(Vector2f coord)
 
 void ComplexPlane::iterationsToRGB(size_t count, Unit8& r, Unit8& g, Unit8& b)
 {
-    r = (0,255);
-    g = (0,255);
-    b = (0,255);
-
-    //set a rabge fron 0 to MAX_ITER either diide tvhe colors to 5 regions
-    //or you can install a sliding effect on the color
+    if(count < 51)
+    {
+        //color number is #04f06a
+        r = 4;
+        g = 241;
+        b = 107;
+    }
+    else if(count >= 51 && count < 102)
+    {
+        //Color number is #abebd2
+        r = 172;
+        g = 236;
+        b = 211;
+    }
+    else if(count >= 102 && count < 153)
+    {
+        //Color number is #9eccbb
+        r = 158;
+        g = 204;
+        b = 187;
+    }
+    else if(cout >= 153 && count < 204)
+    {
+        //Color number is #6d5a5a
+        r = 109;
+        g = 90;
+        b = 90;
+    }
+    else if(count >= 204 && count < 255)
+    {
+        //Color number #454545
+        r = 69;
+        g = 69;
+        b = 69;
+    }
+    else
+    {
+        //will make the color black
+        r = 0;
+        g = 0;
+        b = 0;
+    }
 }
 
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
