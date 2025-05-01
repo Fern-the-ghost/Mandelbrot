@@ -68,7 +68,7 @@ int main()
                 cout << "the right button was pressed" << endl;
                 cout << "mouse x: " << event.mouseButton.x << endl;
                 cout << "mouse y: " << event.mouseButton.y << endl;
-
+                
                 plane.zoomOut();
                 plane.setCenter(event.mouseButton.x, event.mouseButton.y);
 
@@ -84,11 +84,12 @@ int main()
         {
             window.close();
         }
-
+        //Will call the render to update it and fixing the size
         plane.updateRender();
+        //Updates the text that has the location of the cursor and the center
         plane.loadText();
     }
-
+    //will draw all the items on the screen and display it for the user to see
     window.clear();
     window.draw(plane);
     window.draw(newText);
