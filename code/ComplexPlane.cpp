@@ -130,7 +130,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Unit8& r, Unit8& g, Unit8& b)
         g = 204;
         b = 187;
     }
-    else if(cout >= 153 && count < 204)
+    else if(count >= 153 && count < 204)
     {
         //Color number is #6d5a5a
         r = 109;
