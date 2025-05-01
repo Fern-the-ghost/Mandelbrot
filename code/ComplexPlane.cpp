@@ -101,7 +101,15 @@ void ComplexPlane::updateRender()
 
 size_t ComplexPlane::countIterations(Vector2f coord)
 {
-    //Count the number of iterations for coord
+    size_t iter;
+    for(int i = 0; i < coord.x; i++)
+    {
+        for(int j = 0; j <coord.y; j++)
+        {
+            iter++;
+        }
+    }
+    return iter;
 }
 
 void ComplexPlane::iterationsToRGB(size_t count, Unit8& r, Unit8& g, Unit8& b)
@@ -116,10 +124,13 @@ void ComplexPlane::iterationsToRGB(size_t count, Unit8& r, Unit8& g, Unit8& b)
 
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
 {
-    //would we need to use a double for loop?
-    //to find a value of n in [a,b] into [c,d]
-    //use ((n-a)/ (b-a)) * (d-c) + c
-    //(d-c) either equals m_plane_size.x or m_plane_size.y
-    //to find +c use for x: (m_plane_center.x - m_plane_size.x / 2.0)
-    //to find +c use for y: (m_plane_center.y - m_plane_size.y / 2.0)
+    Vector 2f coord;
+
+    float numX = m_plane_center.x - m_plane_size.x / 2.0;
+    float numY = m_plane_center.y - m_plane_size.y / 2.0;
+
+    coord.x = ((mousePixel.x)/m_plane_size.x) * m_plane_size.x + numX;
+    coord.y = ((mousePixel.y)/m_plane_size.y) * m_plane_size.y * numY;
+
+    return coord;
 }
