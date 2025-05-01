@@ -61,7 +61,7 @@ void ComplexPlane::loadText(Text& text)
 
     if(ComplexPlane::setCenter != (0,0))
     {
-        //update the center in text(?)
+        words << "Cursor" << ComplexPlane::setCenter()
     }
 
     if(ComplexPlane::setMouseLocation != //original location(?))
