@@ -82,12 +82,12 @@ void ComplexPlane::updateRender()
         {
             for(int i = 0; i < m_pixel_size.y; i++)
             {
-                m_vArray[j + i * pixelWidth].position = {(float)j,(float)i};
+                m_vArray[j + i * m_pixel_size.x].position = {(float)j,(float)i};
                 ComplexPlane::mapPixelToCoords(m_pixel_size);
                 size_t iterCount = ComplexPlane::countIterations(m_plane_size);
                 sf::Uint8 r, g, b;
                 ComplexPlane::iterationsToRGB(iterCount, r, g, b);
-                m_vArray[j + i * pixelWidth].color = { r,g,b };
+                m_vArray[j + i * m_pixel_size.x].color = { r,g,b };
             }
         }
         m_state = State::DISPLAYING;

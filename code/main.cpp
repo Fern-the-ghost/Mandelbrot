@@ -7,6 +7,7 @@
 #include <sstream>
 #include <complex>
 //Partnered With Anna :3 
+using namespace std;
 
 int main()
 {
