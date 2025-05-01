@@ -77,15 +77,12 @@ int main()
         //Will call the render to update it and fixing the size
         plane.updateRender();
         //Updates the text that has the location of the cursor and the center
-        plane.loadText();
+        plane.loadText(newText);
     }
     //will draw all the items on the screen and display it for the user to see
     window.clear();
     window.draw(plane);
     window.draw(newText);
-    window.draw(Text);
-    window.draw(moreText);
-    window.draw(addText);
     window.display();
     
     return 0;
