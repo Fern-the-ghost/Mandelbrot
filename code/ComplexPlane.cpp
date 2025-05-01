@@ -10,15 +10,14 @@
 
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 {
-    m_pixel_size = (pixelWidth * pixelHeight);
-    m_aspectRatio = (pixelHeight / pixelWidth);
+    m_pixel_size = (pixelWidth, pixelHeight);
+    m_aspectRatio = (pixelHeight) / pixelWidth;
     m_plane_center = {0,0};
     m_plane_size = {BASE_WIDTH,BASE_HEIGHT * m_aspectRatio};
     m_zoomCount = 0;
     m_state = STATE::CALCULATING;
     //Initialize VertexArray with Points and pixelWidth with pixelHeight
-    VertexArray m_vArray(Points(pixelWidth * pixelHeight));
-    //don't know if this would work on the Vertex Array part
+    m_vArray(Points(pixelWidth * pixelHeight));
 }
 
 void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
