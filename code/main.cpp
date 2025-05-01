@@ -11,18 +11,14 @@ using namespace std;
 
 int main()
 {
-    //unsigned int screenWidth = VideoMode::getDesktopMode().width / 2.0;
-    //unsigned int screenHeight = VideoMode::getDesktopMode().height / 2.0;
-
-    VideoMode vm(1920,1080);
+    unsigned int screenWidth = VideoMode::getDesktopMode().width / 2.0;
+    unsigned int screenHeight = VideoMode::getDesktopMode().height / 2.0;
 
     VertexArray vertices(Points);
 
-    //RenderWindow window(VideoMode(screenWidth, screenHeight), "Complex plane!"); //RenderWindows is required to have string
-    RenderWindow window(vm, "Complex Plane", Style::Default);
+    RenderWindow window(VideoMode(screenWidth, screenHeight), "Complex plane!"); //RenderWindows is required to have string
     
-    //ComplexPlane plane(screenWidth, screenHeight);
-    ComplexPlane plane(1920,1080);
+    ComplexPlane plane(screenWidth, screenHeight);
 
     Font newFont;
     newFont.loadFromFile("./ZillaSlab-Bold.ttf"); //put a new font
@@ -33,11 +29,14 @@ int main()
     newText.setStyle(Text::Bold);
 
     Event event;
-    while (window.pollEvent(event))
+    while (window.windowisOpen())
     {
-        if (event.type == Event::Closed)
+        while(window.pollEvent(event))
         {
-            window.close(); 
+            if(event.type == Event::Closed)
+            {
+                window.close();
+            }
         }
         if (event.type == Event::MouseButtonPressed)
         {
