@@ -11,25 +11,24 @@ using namespace std;
 
 int main()
 {
-    unsigned int screenWidth = VideoMode::getDesktopMode().width / 2.0;
-    unsigned int screenHeight = VideoMode::getDesktopMode().height / 2.0;
+    //unsigned int screenWidth = VideoMode::getDesktopMode().width / 2.0;
+    //unsigned int screenHeight = VideoMode::getDesktopMode().height / 2.0;
 
-    /*class ComplexPlane : public Drawable { //inheritance
-    public:
-        VertexArray Points;
-    private:
-        //put smt here
-    };*/
+    VideoMode vm(1920,1080);
+
     VertexArray vertices(Points);
 
-    RenderWindow window(VideoMode(screenWidth, screenHeight), "Complex plane!"); //RenderWindows is required to have string
-    ComplexPlane plane(screenWidth, screenHeight);
+    //RenderWindow window(VideoMode(screenWidth, screenHeight), "Complex plane!"); //RenderWindows is required to have string
+    RenderWindow window(vm, "Complex Plane", Style::Default);
+    
+    //ComplexPlane plane(screenWidth, screenHeight);
+    ComplexPlane plane(1920,1080);
 
     Font newFont;
     newFont.loadFromFile("./ZillaSlab-Bold.ttf"); //put a new font
 
     //Will be used as  a template for all of the strings
-    Text newText("", newFont, 10);
+    Text newText("", newFont, 15);
     newText.setFillColor(Color::White);
     newText.setStyle(Text::Bold);
 
