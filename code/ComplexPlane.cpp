@@ -7,10 +7,11 @@
 #include <sstream>
 #include <complex>
 //Partnered with Anna :3 
+using namespace std;
 
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 {
-    m_pixel_size = (pixelWidth, pixelHeight);
+    m_pixel_size = {pixelWidth, pixelHeight};
     m_aspectRatio = (pixelHeight) / pixelWidth;
     m_plane_center = {0,0};
     m_plane_size = {BASE_WIDTH,BASE_HEIGHT * m_aspectRatio};
@@ -18,10 +19,11 @@ ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
     m_state = State::CALCULATING;
     m_mouseLocation = {0.f, 0.f};
     //Initialize VertexArray with Points and pixelWidth with pixelHeight
-    m_vArray(Points(pixelWidth * pixelHeight));
+    m_vArray.setPrimitiveType(Points);
+    m_vArray.resize(pixelWidth * pixelHeight );
 }
 
-void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
+void ComplexPlane::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(m_vArray);
 }
@@ -29,33 +31,33 @@ void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
 void ComplexPlane::zoomIn()
 {
     m_zoomCount++;
-    unsigned long long int x = BASE_WIDTH * (pow(BASE_ZOOM,m_ZoomCount));
-    unsigned long long int y = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_ZoomCount));
-    m_plane_size = (x,y);
+    unsigned long long int xNew = BASE_WIDTH * (pow(BASE_ZOOM,m_zoomCount));
+    unsigned long long int yNew = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_zoomCount));
+    m_plane_size = {xNew,yNew};
     m_state = State::CALCULATING;
 }
 
 void ComplexPlane::zoomOut()
 {
     m_zoomCount--;
-    unsigned long long int x = BASE_WIDTH * (pow(BASE_ZOOM,m_ZoomCount));
-    unsigned long long int y = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_ZoomCount));
-    m_plane_size = (x,y);
+    unsigned long long int xNew = BASE_WIDTH * (pow(BASE_ZOOM,m_zoomCount));
+    unsigned long long int yNew = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_zoomCount));
+    m_plane_size = {xNew,yNew};
     m_state = State::CALCULATING;
 }
 
-void ComplexPlane::setCenter(vector2i mousePixel)
+void ComplexPlane::setCenter(sf::Vector2i mousePixel)
 {
-    m_plane_center = Vector2f(ComplexPlane::mapPixelToCoords(mousePixel));
+    m_plane_center = sf::Vector2f(ComplexPlane::mapPixelToCoords(mousePixel));
     m_state = State::CALCULATING;
 }
 
-void ComplexPlane::setMouseLocation(Vector2i mousePixel)
+void ComplexPlane::setMouseLocation(sf::Vector2i mousePixel)
 {
-    m_mouseLocation = Vector2f(COMPLEXPLANE::mapPixelToCoords(mousePixel));
+    m_mouseLocation = sf::Vector2f(ComplexPlane::mapPixelToCoords(mousePixel));
 }
 
-void ComplexPlane::loadText(Text& text)
+void ComplexPlane::loadText(sf::Text& text)
 {
     stringstream words;
 
@@ -74,18 +76,17 @@ void ComplexPlane::loadText(Text& text)
 
 void ComplexPlane::updateRender()
 {
-    if (m_State == CALCULATING)
+    if (m_state == State::CALCULATING)
     {
-        for(int i = 0; i < m_pixel_size.y; i++)
+        for(int j = 0; j < m_pixel_size.x; j++)
         {
-            for(int j = 0; j < m_pixel_size.x; j++)
+            for(int i = 0; i < m_pixel_size.y; i++)
             {
-                Vector2f coord = mapPixelToCoords({j,i});
-                int iterCount = countIterations(coords);
-                Uint8 r,g,b;
-                iterationsToRGB(itercount, r, g, b);
-                int index = j + i * m_pixel_size.x;
                 m_vArray[j + i * pixelWidth].position = {(float)j,(float)i};
+                ComplexPlane::mapPixelToCoords(m_pixel_size);
+                size_t iterCount = ComplexPlane::countIterations(m_plane_size);
+                sf::Uint8 r, g, b;
+                ComplexPlane::iterationsToRGB(iterCount, r, g, b);
                 m_vArray[j + i * pixelWidth].color = { r,g,b };
             }
         }
@@ -93,7 +94,7 @@ void ComplexPlane::updateRender()
     }
 }
 
-size_t ComplexPlane::countIterations(sf::Vector2f coord)
+size_t countIterations(sf::Vector2f coord)
 {
     //Will count the iterations for coord
     size_t iter;
@@ -153,15 +154,15 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 }
 
-Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
+sf::Vector2f ComplexPlane::mapPixelToCoords(sf::Vector2i mousePixel)
 {
-    Vector 2f coord;
+    sf::Vector2f newCoord;
 
     float numX = m_plane_center.x - m_plane_size.x / 2.0f;
     float numY = m_plane_center.y - m_plane_size.y / 2.0f;
 
-    coord.x = ((mousePixel.x)/m_plane_size.x) * m_plane_size.x + numX;
-    coord.y = ((mousePixel.y)/m_plane_size.y) * m_plane_size.y * numY;
+    newCoord.x = ((mousePixel.x)/m_plane_size.x) * m_plane_size.x + numX;
+    newCoord.y = ((mousePixel.y)/m_plane_size.y) * m_plane_size.y + numY;
 
-    return coord;
+    return newCoord;
 }
