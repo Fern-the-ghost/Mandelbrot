@@ -81,26 +81,23 @@ void ComplexPlane::loadText(Text& text)
 
 void ComplexPlane::updateRender()
 {
-    Uint8 = r,g,b;
-
-
     if (m_State == CALCULATING)
     {
-        for(int i = 0; i < y; i++)
+        for(int i = 0; i < m_pixel_size.y; i++)
         {
-            for(int j = 0; j < x; j++)
+            for(int j = 0; j < m_pixel_size.x; j++)
             {
-                //set the position of the Vertex Array
+                Vector2f coord = mapPixelToCoords({j,i});
+                int iterCount = countIterations(coords);
+                Uint8 r,g,b;
+                iterationsToRGB(itercount, r, g, b);
+                int index = j + i * m_pixel_size.x;
                 m_vArray[j + i * pixelWidth].position = {(float)j,(float)i};
-                //use ComplexPlane::mapPixelToCoords to find the pixel coord on the screen
-                //use the countIterations to get the count variable
-                //use the local variables for r g b to store the current pixel
-                //Pass all 4 variables: count,r,g,b to iterationsToRGB
-                //use a variable named color to store the VertexArray that works with j,i
+                m_vArray[j + i * pixelWidth].color = { r,g,b };
             }
         }
+        m_state = STATE::DISPLAYING;
     }
-    m_state = STATE::CALCULATING;
 }
 
 size_t ComplexPlane::countIterations(Vector2f coord)
