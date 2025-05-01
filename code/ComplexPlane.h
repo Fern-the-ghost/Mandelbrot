@@ -33,7 +33,7 @@ class ComplexPlane :: public Drawable
         void updateRender();
 
     private:
-        int countIterations(Vector2f);
+        size_t countIterations(Vector2f);
         void iterationsToRGB(size_t, Unit8&, Unit8&, Unit8&);
         Vector2f mapPixelToCoords(Vector2i);
         VertexArray m_vArray;
