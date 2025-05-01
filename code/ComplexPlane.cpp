@@ -93,7 +93,7 @@ void ComplexPlane::updateRender()
     }
 }
 
-size_t ComplexPlane::countIterations(Vector2f coord)
+size_t ComplexPlane::countIterations(sf::Vector2f coord)
 {
     //Will count the iterations for coord
     size_t iter;
