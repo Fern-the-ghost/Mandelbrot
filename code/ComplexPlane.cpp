@@ -110,6 +110,7 @@ int ComplexPlane::countIterations(sf::Vector2f coord)
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
+
     if(count < 51)
     {
         //color number is #04f06a
@@ -152,14 +153,15 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
         g = 0;
         b = 0;
     }
+
 }
 
 sf::Vector2f ComplexPlane::mapPixelToCoords(sf::Vector2i mousePixel)
 {
     sf::Vector2f newCoord;
 
-    float numX = m_plane_center.x - m_plane_size.x / 2.0f;
-    float numY = m_plane_center.y - m_plane_size.y / 2.0f;
+    float numX = m_plane_center.x - m_plane_size.x / 2.0f; //should be +c or -c
+    float numY = m_plane_center.y - m_plane_size.y / 2.0f; // should be +c or -c
 
     newCoord.x = ((mousePixel.x)/m_plane_size.x) * m_plane_size.x + numX;
     newCoord.y = ((mousePixel.y)/m_plane_size.y) * m_plane_size.y + numY;

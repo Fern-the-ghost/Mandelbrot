@@ -25,7 +25,7 @@ enum class State {
 class ComplexPlane : public Drawable { //inheritance (I think its drawable)
 public:
     ComplexPlane(int pixelWidth, int pixelHeight);
-    virtual void draw(RenderTarget& target, RenderStates state) const; //mb virtual
+    void draw(RenderTarget& target, RenderStates state) const; //mb virtual
     void zoomIn();
     void zoomOut();
     void setCenter(Vector2i mousePixel);

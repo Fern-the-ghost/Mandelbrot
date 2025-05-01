@@ -71,7 +71,7 @@ int main()
         { 
             //Call setMouseLocation on the ComplexPlane object to store the (x,y) pixel location of the mouse click
             //This will be used later to display the mouse coordinates as it moves
-            Vector2i mouseMo = Mouse::getPosition();
+            Vector2i mouseMo = Mouse::getPosition(window);
             plane.setMouseLocation(mouseMo);
         }
         if (Keyboard::isKeyPressed(Keyboard::Escape))
