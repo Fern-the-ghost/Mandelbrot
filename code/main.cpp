@@ -52,7 +52,8 @@ int main()
                 Vector2i mousePos = Mouse::getPosition();
                 plane.setCenter(mousePos);
             }
-            else if (event.mouseButton.button == Mouse::Right) {
+            else if (event.mouseButton.button == Mouse::Right) 
+            {
             //Right click will zoomOut and call setCenter on the ComplexPlane 
             //object with the (x,y) pixel location of the mouse click
                 std::cout << "the right button was pressed" << std::endl;
@@ -66,11 +67,12 @@ int main()
             }
             
         }
-        else if (event.type == Event::MouseMoved) { 
+        else if (event.type == Event::MouseMoved) 
+        { 
             //Call setMouseLocation on the ComplexPlane object to store the (x,y) pixel location of the mouse click
             //This will be used later to display the mouse coordinates as it moves
             Vector2i mouseMo = Mouse::getPosition();
-            plane.setCenter(mouseMo);
+            plane.setMouseLocation(mouseMo);
         }
         if (Keyboard::isKeyPressed(Keyboard::Escape))
         {
@@ -80,12 +82,13 @@ int main()
         plane.updateRender();
         //Updates the text that has the location of the cursor and the center
         plane.loadText(newText);
+
+        //will draw all the items on the screen and display it for the user to see
+        window.clear();
+        window.draw(plane);
+        window.draw(newText);
+        window.display();
     }
-    //will draw all the items on the screen and display it for the user to see
-    window.clear();
-    window.draw(plane);
-    window.draw(newText);
-    window.display();
     
     return 0;
 }
