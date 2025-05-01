@@ -29,7 +29,7 @@ int main()
     newFont.loadFromFile("./ZillaSlab-Bold.ttf"); //put a new font
 
     //Will be used as  a template for all of the strings
-    Text newText("", newFont, 50);
+    Text newText("", newFont, 10);
     newText.setFillColor(Color::White);
     newText.setStyle(Text::Bold);
 
