@@ -49,7 +49,7 @@ int main()
                 std::cout << "mouse y: " << event.mouseButton.y << std::endl;
 
                 plane.zoomIn(); 
-                Vector2i mousePos = Mouse::getPosition();
+                Vector2i mousePos = Mouse::getPosition(window);
                 plane.setCenter(mousePos);
             }
             else if (event.mouseButton.button == Mouse::Right) 
@@ -61,7 +61,7 @@ int main()
                 std::cout << "mouse y: " << event.mouseButton.y << std::endl;
                 
                 plane.zoomOut();
-                Vector2i mousePs = Mouse::getPosition();
+                Vector2i mousePs = Mouse::getPosition(window);
                 plane.setCenter(mousePs);
 
             }
