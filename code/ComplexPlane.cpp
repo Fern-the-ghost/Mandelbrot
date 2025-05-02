@@ -30,18 +30,24 @@ void ComplexPlane::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 void ComplexPlane::zoomIn()
 {
+    //incremenets the zoom count to zoom in
     m_zoomCount++;
-    unsigned long long int xNew = BASE_WIDTH * (pow(BASE_ZOOM,m_zoomCount));
-    unsigned long long int yNew = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_zoomCount));
+    
+    float xNew = BASE_WIDTH * (pow(BASE_ZOOM,m_zoomCount));
+    float yNew = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_zoomCount));
+    
     m_plane_size = {xNew,yNew};
     m_state = State::CALCULATING;
 }
 
 void ComplexPlane::zoomOut()
 {
+    //decrements the zoom count for zoom out
     m_zoomCount--;
-    unsigned long long int xNew = BASE_WIDTH * (pow(BASE_ZOOM,m_zoomCount));
-    unsigned long long int yNew = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_zoomCount));
+    
+    float xNew = BASE_WIDTH * (pow(BASE_ZOOM,m_zoomCount));
+    float yNew = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM,m_zoomCount));
+    
     m_plane_size = {xNew,yNew};
     m_state = State::CALCULATING;
 }
@@ -83,10 +89,14 @@ void ComplexPlane::updateRender()
             for(int i = 0; i < m_pixel_size.y; i++)
             {
                 m_vArray[j + i * m_pixel_size.x].position = {(float)j,(float)i};
-                ComplexPlane::mapPixelToCoords(m_pixel_size);
-                int iterCount = ComplexPlane::countIterations(m_plane_size);
+                
+                Vector2f coords = ComplexPlane::mapPixelToCoords(Vector2i(j,i));
+                
+                int iterCount = ComplexPlane::countIterations(coords);
+                
                 sf::Uint8 r, g, b;
                 ComplexPlane::iterationsToRGB(iterCount, r, g, b);
+                
                 m_vArray[j + i * m_pixel_size.x].color = { r,g,b };
             }
         }
@@ -96,16 +106,24 @@ void ComplexPlane::updateRender()
 
 int ComplexPlane::countIterations(sf::Vector2f coord)
 {
-    //Will count the iterations for coord
-    int iter;
-    for(int i = 0; i < coord.x; i++)
+    size_t iterations = 0;
+    
+    float x = 0;  
+    float y = 0;  
+    float x2 = 0;  
+    float y2 = 0;  
+
+    while (iterations < MAX_ITER && (x2 + y2 <= 4))
     {
-        for(int j = 0; j <coord.y; j++)
-        {
-            iter++;
-        }
+        y = 2 * x * y + coord.y;
+        x = x2 - y2 + coord.x;
+        x2 = x * x;
+        y2 = y * y;
+
+        iterations++;
     }
-    return iter;
+
+    return iterations;
 }
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
@@ -160,11 +178,11 @@ sf::Vector2f ComplexPlane::mapPixelToCoords(sf::Vector2i mousePixel)
 {
     sf::Vector2f newCoord;
 
-    float numX = m_plane_center.x - m_plane_size.x / 2.0f; //should be +c or -c
-    float numY = m_plane_center.y - m_plane_size.y / 2.0f; // should be +c or -c
+    float numX = m_plane_center.x / m_plane_size.x; //should be +c or -c
+    float numY = m_plane_center.y / m_plane_size.y; // should be +c or -c
 
-    newCoord.x = ((mousePixel.x)/m_plane_size.x) * m_plane_size.x + numX;
-    newCoord.y = ((mousePixel.y)/m_plane_size.y) * m_plane_size.y + numY;
+    newCoord.x = (mousePixel.x * numX) + (m_plane_center.x - m_plane_size.x/2.0f);
+    newCoord.y = mousePixel.y * numY) + (m_plane_center.y - m_plane_size.y/2.0f);
 
     return newCoord;
 }
