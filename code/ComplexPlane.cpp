@@ -54,17 +54,20 @@ void ComplexPlane::zoomOut()
 
 void ComplexPlane::setCenter(sf::Vector2i mousePixel)
 {
+    //used to change the center to the where the mouse it clicking
     m_plane_center = sf::Vector2f(ComplexPlane::mapPixelToCoords(mousePixel));
     m_state = State::CALCULATING;
 }
 
 void ComplexPlane::setMouseLocation(sf::Vector2i mousePixel)
 {
+    //is used to keep track of where the mouse is moving while in the screen
     m_mouseLocation = sf::Vector2f(ComplexPlane::mapPixelToCoords(mousePixel));
 }
 
 void ComplexPlane::loadText(sf::Text& text)
 {
+    //loads the text in the stringstream so that way it shows up on the top left of the program
     stringstream words;
 
     words.str("");
@@ -82,6 +85,7 @@ void ComplexPlane::loadText(sf::Text& text)
 
 void ComplexPlane::updateRender()
 {
+    //updates the render of the program
     if (m_state == State::CALCULATING)
     {
         for(int j = 0; j < m_pixel_size.x; j++)
@@ -96,7 +100,7 @@ void ComplexPlane::updateRender()
                 
                 sf::Uint8 r, g, b;
                 ComplexPlane::iterationsToRGB(iterCount, r, g, b);
-                
+                //implements the color change to the program
                 m_vArray[j + i * m_pixel_size.x].color = { r,g,b };
             }
         }
