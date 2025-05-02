@@ -186,7 +186,7 @@ sf::Vector2f ComplexPlane::mapPixelToCoords(sf::Vector2i mousePixel)
     float numY = m_plane_center.y / m_plane_size.y; // should be +c or -c
 
     newCoord.x = (mousePixel.x * numX) + (m_plane_center.x - m_plane_size.x/2.0f);
-    newCoord.y = mousePixel.y * numY) + (m_plane_center.y - m_plane_size.y/2.0f);
+    newCoord.y = (mousePixel.y * numY) + (m_plane_center.y - m_plane_size.y/2.0f);
 
     return newCoord;
 }
